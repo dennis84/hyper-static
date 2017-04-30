@@ -1,0 +1,10 @@
+[package]
+name = "hyper-static"
+version = "0.1.0"
+authors = ["Dennis Dietrich <d.dietrich84@gmail.com>"]
+
+[dependencies]
+futures = "0.1"
+hyper = { git = "https://github.com/hyperium/hyper.git" }
+flate2 = "0.2"
+mime = "0.2"
