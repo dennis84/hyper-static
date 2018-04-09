@@ -1,4 +1,4 @@
-#[macro_use] extern crate mime;
+extern crate mime;
 extern crate futures;
 extern crate hyper;
 extern crate flate2;
@@ -12,17 +12,18 @@ use futures::future;
 use futures::future::FutureResult;
 
 use hyper::server::{Request, Response};
-use hyper::{header, StatusCode};
+use hyper::header;
+use hyper::StatusCode;
 
 use flate2::Compression;
 use flate2::write::GzEncoder;
 
 fn get_content_type(path: &Path) -> header::ContentType {
     match path.extension().and_then(OsStr::to_str) {
-        Some("html") => header::ContentType(mime!(Text/Html)),
-        Some("css")  => header::ContentType(mime!(Text/Css)),
-        Some("js")   => header::ContentType(mime!(Application/Javascript)),
-        _            => header::ContentType(mime!(Text/Plain)),
+        Some("html") => header::ContentType(mime::TEXT_HTML),
+        Some("css")  => header::ContentType(mime::TEXT_CSS),
+        Some("js")   => header::ContentType(mime::TEXT_JAVASCRIPT),
+        _            => header::ContentType(mime::TEXT_PLAIN),
     }
 }
 
